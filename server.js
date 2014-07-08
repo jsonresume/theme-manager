@@ -25,7 +25,7 @@ function runTheme(options, req, res) {
 }
 
 app.get('/theme/:theme', function(req, res) {
-  var theme = req.params.theme;
+  var theme = 'jsonresume-theme-' + req.params.theme;
   var version = '0';
   var versionCheck = theme.split('@');
   if (versionCheck.length > 1) {
