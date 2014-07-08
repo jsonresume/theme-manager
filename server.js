@@ -16,7 +16,7 @@ function runTheme(options, req, res) {
   console.log('Generating HTML');
   var themeDirectory = options.themeDirectory;
   console.log('hey', themeDirectory)
-  var theme = require('./' + themeDirectory);
+  var theme = require(__dirname +'/'+ themeDirectory);
   if (theme.render) {
     res.send(theme.render(demo));
   } else {
