@@ -4,27 +4,36 @@ var fs = require('fs');
 var mkdirp = require('mkdirp');
 var path = require('path');
 var npm = require("npm");
+var bodyParser = require('body-parser');
+
 var npmi = require('npmi');
 var tarball = require('tarball-extract')
 var exec = require('child_process').exec,
   child;
 var app = express();
+app.use(bodyParser.json())
+
 var themeDir = 'themes';
-var demo = JSON.parse(fs.readFileSync('resume.json', 'utf8'));
+var resume = JSON.parse(fs.readFileSync('resume.json', 'utf8'));
 
 function runTheme(options, req, res) {
   console.log('Generating HTML');
   var themeDirectory = options.themeDirectory;
   console.log('hey', themeDirectory)
-  var theme = require(__dirname +'/'+ themeDirectory);
+  var theme = require(__dirname + '/' + themeDirectory);
   if (theme.render) {
-    res.send(theme.render(demo));
+    res.send(theme.render(options.resume));
   } else {
     res.send('Theme error!')
   }
 }
 
-app.get('/theme/:theme', function(req, res) {
+var getTheme = function(req, res) {
+  if(req.body && req.body.resume) {
+    console.log('USE POSTED RESUME');
+    
+    resume = req.body.resume;
+  }
   var theme = 'jsonresume-theme-' + req.params.theme;
   var version = '0';
   var versionCheck = theme.split('@');
@@ -42,7 +51,8 @@ app.get('/theme/:theme', function(req, res) {
     if (exists && version !== '0') {
       console.log('Theme cached');
       runTheme({
-        themeDirectory: directoryFolder
+        themeDirectory: directoryFolder,
+        resume: resume
       }, req, res);
       return;
     } else {
@@ -58,7 +68,8 @@ app.get('/theme/:theme', function(req, res) {
         fs.exists(directoryFolder, function(exists) {
           if (exists) {
             runTheme({
-              themeDirectory: directoryFolder
+              themeDirectory: directoryFolder,
+              resume: resume
             }, req, res);
             return;
           } else {
@@ -79,7 +90,8 @@ app.get('/theme/:theme', function(req, res) {
                       function(error, stdout, stderr) {
 
                         runTheme({
-                          themeDirectory: directoryFolder
+                          themeDirectory: directoryFolder,
+                          resume: resume
                         }, req, res);
                         if (error !== null) {
                           console.log('exec error: ' + error);
@@ -97,6 +109,10 @@ app.get('/theme/:theme', function(req, res) {
     }
 
   });
-});
+}
+app.post('/theme/:theme', getTheme);
+
+app.get('/theme/:theme', getTheme);
+
 console.log('what');
 app.listen(3000);
