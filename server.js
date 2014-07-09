@@ -14,7 +14,6 @@ var app = express();
 app.use(bodyParser.json())
 
 var themeDir = 'themes';
-var resume = JSON.parse(fs.readFileSync('resume.json', 'utf8'));
 
 function runTheme(options, req, res) {
   console.log('Generating HTML');
@@ -29,6 +28,8 @@ function runTheme(options, req, res) {
 }
 
 var getTheme = function(req, res) {
+  var resume = JSON.parse(fs.readFileSync('resume.json', 'utf8'));
+
   if(req.body && req.body.resume) {
     console.log('USE POSTED RESUME');
     
