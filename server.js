@@ -53,7 +53,7 @@ var getTheme = function(req, res) {
       var directoryFolder = path.join(themeDir, theme, version);
 
       console.log(theme, version);
-      console.log('why ont execute');
+      //console.log('why ont execute');
       fs.exists(directoryFolder, function(exists) {
         console.log(directoryFolder, exists);
         if (exists && version !== '0') {
@@ -131,5 +131,5 @@ app.post('/theme/:theme', getTheme);
 
 app.get('/theme/:theme', getTheme);
 
-console.log('what');
+console.log('Theme Manager server started');
 app.listen(3000);
