@@ -1,5 +1,5 @@
-# Json Resume
-## Theme Manager
+
+## Json Resume - Theme Manager
 
 Welcome to anybody looking to build themes for resume.json that are compatible with the registry and CLI. 
 
@@ -25,5 +25,45 @@ You can also choose which version of the theme runs e.g.
 
 If you leave off a version, it will always pull the latest from NPM. This will be the case for your theme users, who can either lock themselves into a version of your theme or prefer to always just use your latest changes.
 
+As soon as you publish, the registry will automatically start using your latest version.
+
 ### Getting started
+
+At anytime you can just copy the files out of the default theme repository to get started.
+
+You will need to create a new folder called `jsonresume-theme-{{yourThemeName}}`
+
+Change into this directory then type;
+
+```
+npm init
+```
+
+It should try to name your package as `jsonresume-theme-{{yourThemeName}}`
+
+Then edit index.js and add
+```
+function render (resume) {
+	return 'my template';
+}
+module.exports = { render: render };
+
+```
+
+**Success!** You have created your first theme
+
+Now publish your theme
+
+```
+npm publish
+```
+
+**Excellent!** You should just be able to go to http://themes.jsonresume.org/theme/{{yourThemeName}}
+
+If your familiar with NPM publishing, you can have this up and running in less than 30 seconds.
+
+Anyone using the resume and CLI tool will also be able to use your theme now.
+
+
+
 
