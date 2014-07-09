@@ -11,24 +11,27 @@ var tarball = require('tarball-extract')
 var exec = require('child_process').exec,
   child;
 var app = express();
+
 app.use(bodyParser.json())
 
 var themeDir = 'themes';
 
+
 function runTheme(options, req, res) {
-  console.log('Generating HTML');
   var themeDirectory = options.themeDirectory;
+  console.log('Generating HTML');
   console.log('hey', themeDirectory)
-  var theme = require(__dirname + '/' + themeDirectory);
+  var theme = require( path.join(__dirname,'/',themeDirectory) );
   if (theme.render) {
     res.send(theme.render(options.resume));
   } else {
-    res.send('Theme error!')
+    res.send('Theme error!');
   }
-}
+};
 
 var getTheme = function(req, res) {
-  var resume = JSON.parse(fs.readFileSync('resume.json', 'utf8'));
+
+  var resume = JSON.parse(fs.readFileSync('resume.json', 'utf8')); // Be careful, synchronous operation can block the event loop. 
 
   if(req.body && req.body.resume) {
     console.log('USE POSTED RESUME');
