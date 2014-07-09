@@ -64,6 +64,26 @@ If your familiar with NPM publishing, you can have this up and running in less t
 
 Anyone using the resume and CLI tool will also be able to use your theme now.
 
+### Now what?
+
+You can do what ever you want essentially, just make sure you return HTML
+
+There are a few quirks that you should join #jsonresume on freenode to discuss
+
+The `resume-schema` repository actually has an example resume attached as an export so you can
+
+```
+npm install --save resume-schema
+
+// index.js
+var schema = require('resume-schema');
+var resume = schema.resumeJson; 
+// resume will now be an example resume object
+// Use it while your developing
+```
+
+
+
 
 
 
