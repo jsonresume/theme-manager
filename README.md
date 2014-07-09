@@ -42,7 +42,7 @@ npm init
 It should try to name your package as `jsonresume-theme-{{yourThemeName}}`
 
 Then edit index.js and add
-```
+```js
 function render (resume) {
 	return 'my template';
 }
@@ -72,7 +72,7 @@ There are a few quirks that you should join #jsonresume on freenode to discuss
 
 The `resume-schema` repository actually has an example resume attached as an export so you can
 
-```
+```js
 npm install --save resume-schema
 
 // index.js
