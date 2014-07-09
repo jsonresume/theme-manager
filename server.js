@@ -20,8 +20,16 @@ function runTheme(options, req, res) {
   var themeDirectory = options.themeDirectory;
   console.log('hey', themeDirectory)
   var theme = require(__dirname + '/' + themeDirectory);
+  var output = '';
   if (theme.render) {
-    res.send(theme.render(options.resume));
+    try {
+      output = theme.render(options.resume);
+    } catch (e) {
+      res.send(e);
+      return;
+    }
+    res.send(content);
+
   } else {
     res.send('Theme error!')
   }
