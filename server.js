@@ -17,7 +17,6 @@ app.use(bodyParser.json())
 var resume = require('resume-schema').resumeJson;
 var themeDir = 'themes';
 
-
 function runTheme(options, req, res) {
   var themeDirectory = options.themeDirectory;
   console.log('Generating HTML');
@@ -31,9 +30,11 @@ function runTheme(options, req, res) {
 };
 
 var getTheme = function(req, res) {
+  var resumeObject = resume;
+  
   if (req.body && req.body.resume) {
     console.log('Use posted resume');
-    resume = req.body.resume;
+    resumeObject = req.body.resume;
   }
   
   var theme = 'jsonresume-theme-' + req.params.theme;
@@ -53,7 +54,7 @@ var getTheme = function(req, res) {
       console.log('Theme cached');
       runTheme({
         themeDirectory: directoryFolder,
-        resume: resume
+        resume: resumeObject
       }, req, res);
       return;
     } else {
@@ -70,7 +71,7 @@ var getTheme = function(req, res) {
           if (exists) {
             runTheme({
               themeDirectory: directoryFolder,
-              resume: resume
+              resume: resumeObject
             }, req, res);
             return;
           } else {
@@ -89,10 +90,9 @@ var getTheme = function(req, res) {
                     console.log('Installing dependencies');
                     child = exec('cd ' + directoryFolder + ' && npm install',
                       function(error, stdout, stderr) {
-
                         runTheme({
                           themeDirectory: directoryFolder,
-                          resume: resume
+                          resume: resumeObject
                         }, req, res);
                         if (error !== null) {
                           console.log('exec error: ' + error);
@@ -104,14 +104,9 @@ var getTheme = function(req, res) {
             });
           }
         });
-
       });
-      // Do something
     }
-
   });
-
-  var resume = JSON.parse(fs.readFileSync('resume.json', 'utf8')); // Be careful, synchronous operation can block the event loop. 
 
 };
 
