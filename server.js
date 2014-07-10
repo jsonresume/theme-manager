@@ -12,31 +12,33 @@ var tarball = require('tarball-extract')
 var exec = require('child_process').exec,
   child;
 var app = express();
+
 app.use(bodyParser.json())
 app.use(cors());
 
+var resume = require('resume-schema').resumeJson;
 var themeDir = 'themes';
 
 function runTheme(options, req, res) {
-  console.log('Generating HTML');
   var themeDirectory = options.themeDirectory;
+  console.log('Generating HTML');
   console.log('hey', themeDirectory)
-  var theme = require(__dirname + '/' + themeDirectory);
+  var theme = require( path.join(__dirname,'/',themeDirectory) );
   if (theme.render) {
     res.send(theme.render(options.resume));
   } else {
-    res.send('Theme error!')
+    res.send('Theme error!');
   }
-}
+};
 
 var getTheme = function(req, res) {
-  var resume = JSON.parse(fs.readFileSync('resume.json', 'utf8'));
-
-  if(req.body && req.body.resume) {
-    console.log('USE POSTED RESUME');
-    
-    resume = req.body.resume;
+  var resumeObject = resume;
+  
+  if (req.body && req.body.resume) {
+    console.log('Use posted resume');
+    resumeObject = req.body.resume;
   }
+  
   var theme = 'jsonresume-theme-' + req.params.theme;
   var version = '0';
   var versionCheck = theme.split('@');
@@ -48,18 +50,17 @@ var getTheme = function(req, res) {
   var directoryFolder = path.join(themeDir, theme, version);
 
   console.log(theme, version);
-  console.log('why ont execute');
   fs.exists(directoryFolder, function(exists) {
     console.log(directoryFolder, exists);
     if (exists && version !== '0') {
       console.log('Theme cached');
       runTheme({
         themeDirectory: directoryFolder,
-        resume: resume
+        resume: resumeObject
       }, req, res);
       return;
     } else {
-      console.log('Chceking NPM');
+      console.log('Checking NPM');
       request.get('https://registry.npmjs.org/' + theme, function(response) {
 
         var lib = response.body;
@@ -72,7 +73,7 @@ var getTheme = function(req, res) {
           if (exists) {
             runTheme({
               themeDirectory: directoryFolder,
-              resume: resume
+              resume: resumeObject
             }, req, res);
             return;
           } else {
@@ -91,10 +92,9 @@ var getTheme = function(req, res) {
                     console.log('Installing dependencies');
                     child = exec('cd ' + directoryFolder + ' && npm install',
                       function(error, stdout, stderr) {
-
                         runTheme({
                           themeDirectory: directoryFolder,
-                          resume: resume
+                          resume: resumeObject
                         }, req, res);
                         if (error !== null) {
                           console.log('exec error: ' + error);
@@ -106,16 +106,15 @@ var getTheme = function(req, res) {
             });
           }
         });
-
       });
-      // Do something
     }
-
   });
-}
+
+};
+
 app.post('/theme/:theme', getTheme);
 
 app.get('/theme/:theme', getTheme);
 
-console.log('what');
+console.log('Theme Manager server started');
 app.listen(3000);

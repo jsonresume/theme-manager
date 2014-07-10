@@ -82,8 +82,6 @@ var resume = schema.resumeJson;
 // Use it while your developing
 ```
 
-
-
-
+Here is a [list of themes](http://node-modules.com/search?q=jsonresume-theme-*)
 
 
