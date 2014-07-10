@@ -5,6 +5,7 @@ var mkdirp = require('mkdirp');
 var path = require('path');
 var npm = require("npm");
 var bodyParser = require('body-parser');
+var cors = require('cors')
 
 var npmi = require('npmi');
 var tarball = require('tarball-extract')
@@ -12,6 +13,7 @@ var exec = require('child_process').exec,
   child;
 var app = express();
 app.use(bodyParser.json())
+app.use(cors());
 
 var themeDir = 'themes';
 
