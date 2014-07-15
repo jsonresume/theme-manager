@@ -34,7 +34,7 @@ function runTheme(options, req, res) {
   if (typeof render !== 'undefined') {
     res.send(render);
   } else {
-    res.send('Theme error!');
+    res.send('Theme returned an error.');
   }
 };
 
@@ -69,8 +69,12 @@ var getTheme = function(req, res) {
     } else {
       console.log('Checking NPM');
       request.get('https://registry.npmjs.org/' + theme, function(response) {
-
         var lib = response.body;
+        if (!lib || Object.keys(lib).length === 0) {
+          res.send('Theme could not be found in the npm registry.');
+          console.log(theme, 'not found');
+          return;
+        }
         if (version === '0') {
           version = lib['dist-tags'].latest;
         }
