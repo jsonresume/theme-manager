@@ -22,10 +22,17 @@ var themeDir = 'themes';
 function runTheme(options, req, res) {
   var themeDirectory = options.themeDirectory;
   console.log('Generating HTML');
-  console.log('hey', themeDirectory)
-  var theme = require( path.join(__dirname,'/',themeDirectory) );
-  if (theme.render) {
-    res.send(theme.render(options.resume));
+  console.log('Serve', themeDirectory)
+
+  try {
+    var theme = require( path.join(__dirname,'/',themeDirectory) );
+    var render = theme.render(options.resume);
+  } catch(e) {
+    // ..
+  }
+
+  if (typeof render !== 'undefined') {
+    res.send(render);
   } else {
     res.send('Theme error!');
   }
@@ -33,12 +40,12 @@ function runTheme(options, req, res) {
 
 var getTheme = function(req, res) {
   var resumeObject = resume;
-  
+
   if (req.body && req.body.resume) {
     console.log('Use posted resume');
     resumeObject = req.body.resume;
   }
-  
+
   var theme = 'jsonresume-theme-' + req.params.theme;
   var version = '0';
   var versionCheck = theme.split('@');
