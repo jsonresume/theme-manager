@@ -94,6 +94,17 @@ var getTheme = function(req, res) {
             var themeVersion = theme + '@' + version;
 
             mkdirp(directoryFolder, function(err) {
+              fs.exists( __dirname + '/tmp/', function(exists) {
+                if ( ! exists) {
+                  // create folder /tmp to download && extract
+                  mkdirp(__dirname + '/tmp/', function(err) {
+                    // handle err
+                    if (err)
+                      console.log('cannot create folder ' + __dirname + '/tmp/'+'. Try creating it manually, maybe?');
+                  });
+                }
+              });
+              
               var tempExtractPath = __dirname + '/tmp/' + themeVersion;
               console.log('Downloading NPM module');
               tarball.extractTarballDownload(tarballURL, __dirname + '/tmp/' + themeVersion + '.tar.gz', tempExtractPath, {}, function(err, result) {
