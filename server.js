@@ -1,5 +1,4 @@
 var theme = require('./lib/theme');
-var themes = require('./lib/themes');
 var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
@@ -8,7 +7,7 @@ var app = express();
 app.use(bodyParser.json())
 app.use(cors());
 
-app.get("/themes.json", themes);
+app.use("/themes.json", express.static('themes.json'));
 app.get('/:theme', theme);
 app.post('/theme/:theme', theme);
 
