@@ -9,11 +9,12 @@ app.use(cors());
 
 app.use("/themes.json", express.static('themes.json'));
 app.get('/:theme', theme);
-app.post('/theme/:theme', theme);
+app.post('/:theme', theme);
 
 app.get('/theme/:theme', theme);
 app.post('/theme/:theme', theme);
 
 app.listen(3000);
 
-console.log('Server running at http://localhost:3000/');
+console.log("Starting theme-manager..");
+console.log('Server is now running at http://localhost:3000/');
