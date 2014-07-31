@@ -1,8 +1,17 @@
 {
   "name": "theme-manager",
   "version": "0.0.0",
-  "description": "theme-manager =============",
+  "description": "Theme server for JSON Resume",
+  "author": "",
   "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jsonresume/theme-manager.git"
+  },
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.4.3",
     "cors": "^2.4.1",
@@ -11,23 +20,8 @@
     "mkdirp": "^0.5.0",
     "npm": "^1.4.20",
     "npmi": "0.0.10",
-    "resume-schema": "0.0.15",
+    "resume-schema": "latest",
     "superagent": "^0.18.1",
     "tarball-extract": "0.0.3"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jsonresume/theme-manager.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jsonresume/theme-manager/issues"
-  },
-  "homepage": "https://github.com/jsonresume/theme-manager"
+  }
 }
