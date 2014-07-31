@@ -1,4 +1,4 @@
-# JSON Resume Theme Manager
+# Theme Manager
 
 This is the theme server running on http://themes.jsonresume.org/.
 
@@ -9,7 +9,7 @@ All themes must follow the naming convention:
 
 Example:  
 __Boilerplate theme__
-- [github](https://github.com/jsonresume/jsonresume-theme-boilerplate)
+- [GitHub](https://github.com/jsonresume/jsonresume-theme-boilerplate)
 - [npm package](https://www.npmjs.org/package/jsonresume-theme-boilerplate)
 
 ## Theme registry
