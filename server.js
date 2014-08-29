@@ -8,6 +8,11 @@ app.use(bodyParser.json())
 app.use(cors());
 
 app.use("/themes.json", express.static('themes.json'));
+
+app.get('/favicon.ico', function(req, res) {
+  res.end();
+});
+
 app.get('/:theme', theme);
 app.post('/:theme', theme);
 
