@@ -14,6 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.4.3",
+    "compression": "^1.4.4",
     "cors": "^2.4.1",
     "express": "^4.5.1",
     "express-minify": "^0.1.4",

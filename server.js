@@ -4,7 +4,9 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 var app = express();
 var minify = require('express-minify');
+var compress = require('compression');
 
+app.use(compress());
 app.use(minify(
 {
   cache: __dirname + '/cache'
