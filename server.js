@@ -3,6 +3,12 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var app = express();
+var minify = require('express-minify');
+
+app.use(minify(
+{
+  cache: __dirname + '/cache'
+}));
 
 app.use(bodyParser.json())
 app.use(cors());
