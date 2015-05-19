@@ -1,5 +1,7 @@
 # Theme Manager
 
+[![Dependency Status](https://david-dm.org/jsonresume/theme-manager.svg)](https://david-dm.org/jsonresume/theme-manager)
+
 This is the theme server running on http://themes.jsonresume.org/.
 
 ## Themes
