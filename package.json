@@ -24,7 +24,7 @@
     "npm": "^3.10.2",
     "npmi": "2.0.1",
     "resume-schema": "latest",
-    "superagent": "^0.18.2",
+    "superagent": "^2.0.0",
     "tarball-extract": "0.0.3"
   }
 }
