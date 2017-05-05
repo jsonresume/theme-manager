@@ -6,6 +6,7 @@ var app = express();
 var minify = require('express-minify');
 var compress = require('compression');
 
+app.disable('x-powered-by');
 app.use(compress());
 app.use(minify(
 {
