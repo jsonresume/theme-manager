@@ -5,6 +5,7 @@ var cors = require('cors');
 var app = express();
 var minify = require('express-minify');
 var compress = require('compression');
+var port = 3000;
 
 app.disable('x-powered-by');
 app.use(compress());
@@ -27,7 +28,7 @@ app.post('/:theme', theme);
 app.get('/theme/:theme', theme);
 app.post('/theme/:theme', theme);
 
-app.listen(3000);
+app.listen(port);
 
 console.log("Starting theme-manager..");
-console.log('Server is now running at http://localhost:3000/');
+console.log('Server is now running at http://localhost:' + port + '/');
