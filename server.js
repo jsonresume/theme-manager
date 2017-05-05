@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var theme = require('./lib/theme');
 var express = require('express');
 var bodyParser = require('body-parser');
