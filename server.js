@@ -28,7 +28,8 @@ app.post('/:theme', theme);
 app.get('/theme/:theme', theme);
 app.post('/theme/:theme', theme);
 
-app.listen(port);
-
 console.log("Starting theme-manager..");
-console.log('Server is now running at http://localhost:' + port + '/');
+
+app.listen(port, function() {
+  console.log('Server is now running at http://localhost:' + port + '/');
+});
