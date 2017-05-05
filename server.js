@@ -5,7 +5,7 @@ var cors = require('cors');
 var app = express();
 var minify = require('express-minify');
 var compress = require('compression');
-var port = 3000;
+var port = process.env.PORT || 3000;
 
 app.disable('x-powered-by');
 app.use(compress());
