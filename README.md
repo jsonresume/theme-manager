@@ -25,7 +25,7 @@ http://themes.jsonresume.org/flat@0.3.2
 
 __As soon as you publish to npm, the registry will automatically start using the latest version.__
 
-Browse [available themes](http://node-modules.com/search?q=jsonresume-theme-*).
+Browse [available themes](https://www.npmjs.com/search?q=jsonresume-theme-*).
 
 ## License
 
