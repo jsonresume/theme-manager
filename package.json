@@ -18,13 +18,13 @@
     "compression": "^1.4.4",
     "cors": "^2.4.1",
     "express": "^4.5.1",
-    "express-minify": "^0.2.0",
+    "express-minify": "^1.0.0",
     "lodash": "^4.13.1",
     "mkdirp": "^0.5.0",
-    "npm": "^4.5.0",
-    "npmi": "2.0.1",
+    "npm": "^5.5.1",
+    "npmi": "3.0.0",
     "resume-schema": "latest",
     "superagent": "^3.5.2",
-    "tarball-extract": "0.0.3"
+    "tarball-extract": "0.0.6"
   }
 }
