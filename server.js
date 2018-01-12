@@ -21,9 +21,17 @@ app.use(function(req, res, next) {
   next();
 });
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
 
+app.set('views', __dirname + '/views');
+app.engine('handlebars', require('express-handlebars')({}));
+app.set('view engine', 'handlebars');
+
 app.use("/themes.json", express.static('themes.json'));
+app.get('/blank.html', function(req,res,next) {
+  res.send("");
+});
 app.get('/:theme', theme);
 app.post('/:theme', theme);
 
