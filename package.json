@@ -5,7 +5,8 @@
   "author": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "PORT=8100 node server.js"
   },
   "repository": {
     "type": "git",
