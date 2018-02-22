@@ -5,7 +5,9 @@
   "author": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "PORT=3000 forever start server.js",
+    "watch": "PORT=3000 nodemon server.js",
+    "stop": "forever stop server.js",
     "dev": "PORT=8100 node server.js"
   },
   "repository": {
