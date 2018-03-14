@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Resume Error</title>
+    <style type="text/css">
+      body {
+        margin: 50px;
+        font-family: "Arial", sans-serif;
+        text-align: center;
+        min-height: 100px;
+        font-size: 14px;
+        line-height: 20px;
+      }
+      a {
+        font-weight: bold;
+        color: #22344f;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+    Sorry, this
+    {{#if theme_homepage}}
+      <a href="{{theme_homepage}}" target="_blank">theme</a>
+    {{else}}
+      theme
+    {{/if}}
+    has an error.  It could be requiring a profile field you left blank.
+    </div>
+  </body>
+</html>

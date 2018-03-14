@@ -1,3 +1,9 @@
+#emacs
+*~
+
+# JetBrains IDE stuff
+.idea
+
 themes
 themes.json
 tmp
