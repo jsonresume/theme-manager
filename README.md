@@ -18,10 +18,7 @@ __Boilerplate theme__
 ## Theme registry
 
 After a theme has been published to npm, you can browse the theme here:  
-http://themes.jsonresume.org/flat
-
-You can also choose specific theme versions, like this:  
-http://themes.jsonresume.org/flat@0.3.2
+https://themes.jsonresume.org/theme/flat
 
 __As soon as you publish to npm, the registry will automatically start using the latest version.__
 
